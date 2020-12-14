@@ -19,7 +19,7 @@ npm install vuex --save
 http://localhost:8080/shop/
 ```
 
-## 前台tomcat服务器地址
+## 前台vue服务器地址
 ```
 http://localhost:8010/
 ```

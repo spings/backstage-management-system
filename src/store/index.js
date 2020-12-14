@@ -71,5 +71,30 @@ export default new Vuex.Store({
         }
     },
     actions: {},
-    modules: {}
+    modules: {
+        "xpw": {
+            namespaced: true,
+            // 模块内容（module assets）
+            state: () => ({}), // 模块内的状态已经是嵌套的了，使用 `namespaced` 属性不会对其产生影响
+            getters: {},
+            actions: {},
+            mutations: {}
+        },
+        "xp": {
+            namespaced: true,
+            // 模块内容（module assets）
+            state: () => ({}), // 模块内的状态已经是嵌套的了，使用 `namespaced` 属性不会对其产生影响
+            getters: {},
+            actions: {},
+            mutations: {}
+        },
+        "pdrr": {
+            namespaced: true,
+            // 模块内容（module assets）
+            state: () => ({}), // 模块内的状态已经是嵌套的了，使用 `namespaced` 属性不会对其产生影响
+            getters: {},
+            actions: {},
+            mutations: {}
+        }
+    }
 })
