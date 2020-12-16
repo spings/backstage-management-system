@@ -9,12 +9,13 @@ import MerchantInfoMaintenance from '../views/MerchantInfoMaintenance'
 import Emp from '../views/Emp'
 import Role from '../views/Role'
 import Menu from '../views/Menu'
-import Classification from '../views/Classification'
-import Inventory from '../views/Inventory'
+import WarehouseType from '../views/WarehouseType'
+import Warehouse from '../views/Warehouse'
 import AllocatingManagement from '../views/AllocatingManagement'
 import SalesStatistics from '../views/SalesStatistics'
 import RevenueStatistics from '../views/RevenueStatistics'
 import ProcurementManagement from '../views/ProcurementManagement'
+import WarehouseGoods from "../views/WarehouseGoods";
 
 Vue.use(VueRouter)
 
@@ -65,14 +66,14 @@ const routes = [
         component: Menu
     },
     {
-        path: '/classification',
-        name: 'Classification',
-        component: Classification
+        path: '/warehouseType',
+        name: 'WarehouseType',
+        component: WarehouseType
     },
     {
-        path: '/inventory',
-        name: 'Inventory',
-        component: Inventory
+        path: '/warehouse',
+        name: 'Warehouse',
+        component: Warehouse
     },
     {
         path: '/allocatingManagement',
@@ -93,6 +94,11 @@ const routes = [
         path: '/procurementManagement',
         name: 'ProcurementManagement',
         component: ProcurementManagement
+    },
+    {
+        path: '/warehouseGoods',
+        name: 'WarehouseGoods',
+        component: WarehouseGoods
     },
 ]
 

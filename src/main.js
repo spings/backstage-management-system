@@ -9,10 +9,17 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
+axios.defaults.baseURL="http://localhost:8080/shop/"
 Vue.use(ElementUI)
 
-new Vue({
+
+var vue=new Vue({
     router,
     store,
     render: h => h(App)
 }).$mount('#app')
+
+//默认地址
+vue.$router.replace({
+    path: '/',
+})
