@@ -81,12 +81,12 @@
         created() {
             this.$axios({
                 method: 'post',
-                url: 'http://localhost:8080/shop/seMenu.action',
+                url: 'seMenu.action',
                 data: {}
             }).then((result) => {
                 this.menus = result.data;
                 this.$store.commit("setMenus", this.menus);
-            })
+            });
         }
     }
 </script>
