@@ -9,6 +9,11 @@
 
     export default {
         name: 'app',
+        data(){
+          return {
+              msg:"这里是App.vue"
+          }
+        },
         components: {
             HomeCom
         }
