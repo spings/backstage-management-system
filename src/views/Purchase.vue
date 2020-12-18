@@ -19,10 +19,7 @@
 
 
         <el-table
-                :data="purchaseData.filter(
-                    data => !search || data.cname.toLowerCase().includes(search.toLowerCase())
-                    )
-"
+                :data="purchaseData"
                 style="width: 100%">
             <el-table-column
                     width="100px"
@@ -80,7 +77,7 @@
                 purchaseData: [], //供应商商品
                 options: [], //供货商商品类型数据
                 cname: '', //模糊查询
-                total: '', //总记录数
+                total: 0, //总记录数
                 page: '', //页码
                 rows: '', //每夜条数
                 tid: ''
