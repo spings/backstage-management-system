@@ -24,7 +24,7 @@
                 </el-form-item>
                 <el-form-item label="照片">
                     <input type="file" accept="image/*" @change="getFile($event)" class="EmpImgFile"/>
-                    <img :src="'http://localhost:8090/images/'+row.img" class="empImg1" id="EmpImgFile1">
+                    <img :src="$host+row.img" class="empImg1" id="EmpImgFile1">
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="submitForm('row')">提交</el-button>

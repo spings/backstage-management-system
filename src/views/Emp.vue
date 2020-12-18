@@ -37,8 +37,8 @@
                 <template slot-scope="scope">
                     <el-image
                             class="empImg"
-                            :src="'http://localhost:8090/images/'+scope.row.img"
-                            :preview-src-list="['http://localhost:8090/images/'+scope.row.img]">
+                            :src="$host+scope.row.img"
+                            :preview-src-list="[$host+scope.row.img]">
                     </el-image>
                 </template>
             </el-table-column>
