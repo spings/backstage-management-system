@@ -86,7 +86,7 @@
             }).then((result) => {
                 this.menus = result.data;
                 this.$store.commit("setMenus", this.menus);
-            })
+            });
         }
     }
 </script>

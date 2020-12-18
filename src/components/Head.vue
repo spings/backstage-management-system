@@ -126,7 +126,7 @@
                 operationLeft: 1340,
                 refreshLeft: 1300,
                 screenBool: false,
-                refreshBool: false,
+                refreshBool: true,
                 homeBool: true
             }
         },

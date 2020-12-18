@@ -14,9 +14,10 @@
                     :label="tab.title"
                     :name="tab.name"
             >
-                <router-view></router-view>
+
             </el-tab-pane>
         </el-tabs>
+        <router-view/>
         <ul
                 id="contextmenu"
                 v-show="visible"
