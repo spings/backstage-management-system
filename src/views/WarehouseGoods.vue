@@ -38,6 +38,18 @@
             </el-table-column>
         </el-table>
 
+        <!--        分页-->
+        <div class="block">
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :page-sizes="[5, 10, 15, 20]"
+                    :page-size="5"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="total">
+            </el-pagination>
+        </div>
+
 
     </div>
 
@@ -51,6 +63,9 @@
         data() {
             return {
                 warehouseGoodsData:[],
+                page:'',
+                rows:'',
+                total:'',
                 arr:[
                     {
                         id:'',
@@ -60,11 +75,29 @@
             }
         },
         methods: {
+            //pageSize（每页条数） 改变时触发
+            handleSizeChange(val) {
+                this.rows = val;
+                this.getWarehouseGoodsData();
+            },
+            //改变页码时触发
+            handleCurrentChange(val) {
+                this.page = val;
+                this.getWarehouseGoodsData();
+            },
             //获取仓库商品信息
             getWarehouseGoodsData(){
+
                 var _this=this;
-                this.$axios.get("queryWarehouseGoodsByGroup.action").then(function (result) {
+                var params=new URLSearchParams();
+                params.append('page',this.page);
+                params.append('rows',this.rows);
+
+                this.$axios.get("queryWarehouseGoodsByGroup.action",{
+                    params
+                }).then(function (result) {
                     _this.warehouseGoodsData=result.data.rows;
+                    _this.total=result.data.total;
                 }).catch(function (error) {
                     alert(error)
                 })

@@ -16,6 +16,7 @@ import SalesStatistics from '../views/SalesStatistics'
 import RevenueStatistics from '../views/RevenueStatistics'
 import ProcurementManagement from '../views/ProcurementManagement'
 import WarehouseGoods from "../views/WarehouseGoods";
+import Purchase from "../views/Purchase";
 
 Vue.use(VueRouter)
 
@@ -99,6 +100,11 @@ const routes = [
         path: '/warehouseGoods',
         name: 'WarehouseGoods',
         component: WarehouseGoods
+    },
+    {
+        path: '/purchase',
+        name: 'Purchase',
+        component: Purchase
     },
 ]
 
