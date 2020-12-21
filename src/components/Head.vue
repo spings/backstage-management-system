@@ -99,7 +99,7 @@
                 <li id="headLogout">退出登录</li>
             </ul>
             <div class="headImg" slot="reference">
-                <el-avatar :src="require('../assets/3.png')"></el-avatar>
+                <el-avatar :src="$host+'3.png'"></el-avatar>
                 <span class="spanHeader">用户名</span>
                 <i class="el-icon-caret-bottom"></i>
             </div>

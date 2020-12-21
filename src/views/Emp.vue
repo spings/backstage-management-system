@@ -159,7 +159,6 @@
                         message: '已取消删除'
                     });
                 });
-
             },
             // 修改每页条数执行的方法
             empSizeChange(val) {
@@ -288,7 +287,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .empImg {
         width: 25px;
         height: 22px;
