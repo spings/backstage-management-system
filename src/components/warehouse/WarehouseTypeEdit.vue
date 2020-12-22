@@ -1,6 +1,8 @@
 <template>
     <div>
-        <el-form :model="editData" status-icon :rules="rules" ref="editData" label-width="100px" class="demo-ruleForm">
+        <el-form :model="editData" status-icon :rules="rules" ref="editData" label-width="100px" class="demo-ruleForm"
+                 style="width: 300px"
+                 label-position="right" size="mini">
             <el-form-item label="编号" prop="id">
                 <el-input type="text" v-model="editData.id" autocomplete="off" disabled></el-input>
             </el-form-item>
@@ -94,6 +96,6 @@
     }
 </script>
 
-<style scoped>
+<style>
 
 </style>

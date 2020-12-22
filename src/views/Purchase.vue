@@ -1,25 +1,30 @@
 <template>
     <!--    虚拟进货-->
     <div>
-        <!--        模糊搜索-->
-        <el-input
-                style="width: 300px"
-                v-model="cname"
-                @input="getPurchaseData"
-                size="mini"
-                placeholder="请输入名称"/>
-        <el-select v-model="tid" filterable placeholder="请选择类型" clearable @change="getPurchaseData">
-            <el-option
-                    v-for="item in options"
-                    :key="item.tid"
-                    :label="item.tname"
-                    :value="item.tid">
-            </el-option>
-        </el-select>
+        <div style="width: 100%;text-align: center">
 
+            <!--        模糊搜索-->
+            <el-input
+                    style="width: 300px"
+                    v-model="cname"
+                    @input="getPurchaseData"
+                    size="mini"
+                    placeholder="请输入名称"/>
+            &nbsp;
+            <el-select v-model="tid" filterable placeholder="请选择类型" clearable @change="getPurchaseData">
+                <el-option
+                        v-for="item in options"
+                        :key="item.tid"
+                        :label="item.tname"
+                        :value="item.tid">
+                </el-option>
+            </el-select>
+        </div>
 
         <el-table
-                :data="purchaseData"
+                border
+                :data="purchaseData
+"
                 style="width: 100%">
             <el-table-column
                     width="100px"
@@ -38,19 +43,17 @@
                     label="类型"
                     prop="commodityType.tname">
             </el-table-column>
+
             <el-table-column
                     align="right">
-                <!--<template slot-scope="scope">
+                <template slot-scope="scope">
                     <el-button
-                            size="mini"
-                            @click="handleEdit(scope.$index, scope.row)">Edit
+                            type="primary" icon="el-icon-edit" circle
+                            size="small"
+                            @click="openAddWarehouse(scope.$index, scope.row,'edit')">
+                        进货
                     </el-button>
-                    <el-button
-                            size="mini"
-                            type="danger"
-                            @click="handleDelete(scope.$index, scope.row)">Delete
-                    </el-button>
-                </template>-->
+                </template>
             </el-table-column>
         </el-table>
 
@@ -66,14 +69,35 @@
                     :total="total">
             </el-pagination>
         </div>
+
+
+        <el-dialog
+                class="dialog"
+                destroy-on-close
+                title="仓库商品添加窗体"
+                :visible.sync="dialogVisibleAdd"
+                :before-close="handleClose">
+            <span>
+
+                <purchaseAdd ref="dialogAdd">
+
+                </purchaseAdd>
+            </span>
+        </el-dialog>
+
+
     </div>
 </template>
 
 <script>
+    import purchaseAdd from "../components/purchase/PurchaseAdd";
+
     export default {
         name: "Purchase",
         data() {
             return {
+                dialogVisibleAdd: false, //添加对话框
+                purchaseAddData: {},
                 purchaseData: [], //供应商商品
                 options: [], //供货商商品类型数据
                 cname: '', //模糊查询
@@ -129,6 +153,27 @@
             handleDelete(index, row) {
                 console.log(index, row);
             },
+            //打开添加对话框
+            openAddWarehouse(index, row) {
+                this.dialogVisibleAdd = true;
+                this.purchaseAddData = row;
+                if (this.$refs.dialogAdd != undefined) {
+                    this.$refs.dialogAdd.addPurchaseData = row;
+                }
+
+            },
+            //对话框关闭
+            handleClose(done) {
+                this.$confirm('确认关闭？')
+                    .then(() => {
+                        done();
+                    })
+                    .catch(() => {
+                    });
+            }
+        },
+        components: {
+            purchaseAdd
         },
         created() {
             this.getPurchaseTypeData();
@@ -137,6 +182,18 @@
     }
 </script>
 
-<style scoped>
+<style>
+    .dialog .el-dialog {
+        background-image: url(http://localhost:8080/shop/img/30.png);
+        background-size: 120%;
+        padding: 10px;
+        height: 500px;
+    }
+    .el-table .warning-row {
+        background: oldlace;
+    }
 
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
 </style>
