@@ -4,7 +4,7 @@
         <el-table
                 row-key="id"
                 border
-                :data="warehouseGoodsData.filter(data => !search || data.cname.toLowerCase().includes(search.toLowerCase()))"
+                :data="warehouseGoodsData.filter(data => !search || data.commodity.cname.toLowerCase().includes(search.toLowerCase()))"
                 style="width: 100%">
             <el-table-column
                     width="100px"
@@ -62,6 +62,7 @@
         name: "warehouseGoods",
         data() {
             return {
+                search:'',
                 warehouseGoodsData:[],
                 page:'',
                 rows:'',

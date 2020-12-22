@@ -9,7 +9,7 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
-Vue.prototype.$host = "http://localhost:8080/shop/img/";
+Vue.prototype.$host = "http://localhost:8080/img/";
 axios.defaults.baseURL="http://localhost:8080/shop/"
 Vue.use(ElementUI)
 
