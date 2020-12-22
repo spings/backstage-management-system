@@ -3,7 +3,8 @@
     <div id="warehouseTypeView">
         <el-button type="success" icon="el-icon-check" circle @click="warehouseEdit(null,null,'add')">添加</el-button>
         <el-table
-                :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+                border
+                :data="tableData"
                 style="width: 100%">
             <el-table-column
                     width="100px"
@@ -20,7 +21,7 @@
                     <el-input
                             v-model="search"
                             size="mini"
-                            placeholder="输入关键字搜索"/>
+                            placeholder="请输入类型名称"/>
                 </template>
                 <template slot-scope="scope">
                     <el-button
@@ -44,16 +45,23 @@
             </el-table-column>
         </el-table>
         <!--        分页-->
-        <el-pagination background layout="prev, pager, next" :total="total" :page-size="5"
-                       @current-change="pageEdit">
-        </el-pagination>
+        <!--        分页-->
+        <div class="block">
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :page-sizes="[5, 10, 15, 20]"
+                    :page-size="5"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="total">
+            </el-pagination>
+        </div>
 
         <!--        编辑-->
         <el-dialog
+                class="dialog"
                 title="仓库类型编辑"
                 :visible.sync="dialogVisible"
-                width="30%"
-                center
                 destroy-on-close
                 :before-close="handleClose">
             <span>
@@ -67,10 +75,9 @@
 
         <!--        添加-->
         <el-dialog
+                class="dialog"
                 title="仓库类型添加"
                 :visible.sync="dialogVisibleAdd"
-                width="30%"
-                center
                 destroy-on-close
                 :before-close="handleClose">
             <span>
@@ -92,8 +99,9 @@
         name: "classificationView",
         data() {
             return {
-                total: '',
+                total: 0,
                 page: '',
+                rows:'',
                 tableData: [],
                 search: '',
                 dialogVisible: false,
@@ -102,10 +110,27 @@
             }
         },
         methods: {
+            //pageSize（每页条数） 改变时触发
+            handleSizeChange(val) {
+                this.rows = val;
+                this.getAllWarehouse();
+            },
+            //改变页码时触发
+            handleCurrentChange(val) {
+                this.page = val;
+                this.getAllWarehouse();
+            },
             //获取数据
             getAllWarehouseType() {
                 var _this = this;
-                this.$axios.get("queryAllWarehouseType.action?page=" + _this.page)
+                var params=new URLSearchParams();
+                params.append("name",this.search);
+                params.append("page",this.page);
+                params.append("rows",this.rows);
+                this.$axios.get("queryAllWarehouseType.action",
+                    {
+                        params
+                    })
                     .then(function (result) {
                         _this.tableData = result.data.rows;
                         _this.total = result.data.total;
@@ -164,6 +189,11 @@
                 this.getAllWarehouseType();
             }
         },
+        watch:{
+            "search":function () {
+                this.getAllWarehouseType();
+            }
+        },
         components: {
             warehouseTypeEdit,
             warehouseTypeAdd
@@ -175,5 +205,12 @@
 </script>
 
 <style>
+
+    .dialog .el-dialog {
+        background-image: url(http://localhost:8080/shop/img/30.png);
+        background-size: 120%;
+        padding: 10px;
+        height: 500px;
+    }
 
 </style>

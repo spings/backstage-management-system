@@ -1,6 +1,8 @@
 <template>
     <div>
         <el-form :model="warehouseEditData" status-icon :rules="rules" ref="warehouseEditData" label-width="100px"
+                 style="width: 300px"
+                 label-position="right" size="mini"
                  class="demo-ruleForm">
             <el-form-item label="编号" prop="id">
                 <el-input type="text" v-model="warehouseEditData.id" autocomplete="off" disabled></el-input>
