@@ -66,7 +66,16 @@
             },
             // 修改权限信息
             permissionsEdit(row) {
-                console.log(row);
+                let data = new URLSearchParams();
+                data.set("id", row.id);
+                this.$axios({
+                    method: 'post',
+                    url: 'seRolePer.action',
+                    data: data
+                }).then((result) => {
+                    this.$children[2].menusTrue = result.data;
+                    this.$children[2].rid = row.id;
+                });
                 this.$children[2].editPermissionsComBool = true;
             },
             // 修改角色信息
