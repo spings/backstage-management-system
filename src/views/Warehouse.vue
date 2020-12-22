@@ -5,7 +5,7 @@
         <el-table
                 border
                 :data="tableData"
-                style="width: 100%">
+                style="width: 100%;">
             <el-table-column
                     width="100px"
                     label="编号"
