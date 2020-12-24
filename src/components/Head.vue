@@ -175,8 +175,8 @@
             },
             // 显示头像，用户名
             showImgName() {
-                this.empImg = JSON.parse(localStorage.getItem("empUser")).emp.img
-                this.empName = JSON.parse(localStorage.getItem("empUser")).emp.name
+                this.empImg = JSON.parse(sessionStorage.getItem("empUser")).emp.img
+                this.empName = JSON.parse(sessionStorage.getItem("empUser")).emp.name
             }
         },
         watch: {
