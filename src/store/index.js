@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import fa from "element-ui/src/locale/lang/fa";
 
 Vue.use(Vuex)
 
@@ -18,7 +19,10 @@ export default new Vuex.Store({
         // display：none
         none: '',
         // 菜单
-        menus: []
+        menus: [],
+        // 登录状态
+        bool: false,
+        menuBtn: []
     },
     mutations: {
         /**
@@ -68,33 +72,14 @@ export default new Vuex.Store({
         },
         setMenus(state, val) {
             state.menus = val;
+        },
+        setBool(state, val) {
+            state.bool = val;
+        },
+        setMenuBtn(state, val) {
+            state.menuBtn= val;
         }
     },
     actions: {},
-    modules: {
-        "xpw": {
-            namespaced: true,
-            // 模块内容（module assets）
-            state: () => ({}), // 模块内的状态已经是嵌套的了，使用 `namespaced` 属性不会对其产生影响
-            getters: {},
-            actions: {},
-            mutations: {}
-        },
-        "xp": {
-            namespaced: true,
-            // 模块内容（module assets）
-            state: () => ({}), // 模块内的状态已经是嵌套的了，使用 `namespaced` 属性不会对其产生影响
-            getters: {},
-            actions: {},
-            mutations: {}
-        },
-        "pdrr": {
-            namespaced: true,
-            // 模块内容（module assets）
-            state: () => ({}), // 模块内的状态已经是嵌套的了，使用 `namespaced` 属性不会对其产生影响
-            getters: {},
-            actions: {},
-            mutations: {}
-        }
-    }
+    modules: {}
 })

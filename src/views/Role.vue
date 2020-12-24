@@ -3,7 +3,7 @@
         <role-edit-com></role-edit-com>
         <role-add-com></role-add-com>
         <EditPermissionsCom></EditPermissionsCom>
-        <el-button @click="roleAdd" type="primary" class="roleAddBtn">
+        <el-button v-if="$indexOf(30)" @click="roleAdd" type="primary" class="roleAddBtn">
             Add
         </el-button>
         <el-table
@@ -19,17 +19,17 @@
                     prop="name"
                     label="角色名">
             </el-table-column>
-            <el-table-column align="left" label="操作">
+            <el-table-column align="left" label="操作" v-if="$indexOf(62) || $indexOf(31) || $indexOf(32)">
                 <template slot-scope="scope">
-                    <el-button size="mini" type="warning"
+                    <el-button v-if="$indexOf(62)" size="mini" type="warning"
                                @click="permissionsEdit(scope.row)">
                         修改权限
                     </el-button>
-                    <el-button size="mini" type="warning"
+                    <el-button v-if="$indexOf(31)" size="mini" type="warning"
                                @click="roleEdit(scope.row)">
                         修改角色信息
                     </el-button>
-                    <el-button size="mini" type="danger"
+                    <el-button v-if="$indexOf(32)" size="mini" type="danger"
                                @click="roleDel(scope.row)">
                         删除角色
                     </el-button>
@@ -73,7 +73,23 @@
                     url: 'seRolePer.action',
                     data: data
                 }).then((result) => {
-                    this.$children[2].menusTrue = result.data;
+                    // 删除父菜单的id < 22
+                    let data1 = Array.from(new Set(result.data));
+                    for (; ;) {
+                        let i = 1;
+                        data1.forEach((item, index) => {
+                            if (item !== 17 && item !== 18 && item !== 19) {
+                                if (item < 22 ) {
+                                    i = 0;
+                                    data1.splice(index, 1);
+                                }
+                            }
+                        });
+                        if (i === 1) {
+                            break;
+                        }
+                    }
+                    this.$children[2].menusTrue = data1;
                     this.$children[2].rid = row.id;
                 });
                 this.$children[2].editPermissionsComBool = true;

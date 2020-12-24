@@ -1,7 +1,8 @@
 <template>
     <div id="app">
-        <login-view v-if="bool"></login-view>
+        <login-view v-if="!bool"></login-view>
         <home-com v-else></home-com>
+        <span hidden>{{bool = $store.state.bool}}</span>
     </div>
 </template>
 
@@ -13,12 +14,29 @@
         name: 'app',
         data() {
             return {
-                bool: true
+                bool: false
+            }
+        },
+        methods: {
+            setBool() {
+                if (!sessionStorage.getItem("empUser")) {
+                    this.$store.commit("setBool", false);
+                } else {
+                    this.$store.commit("setBool", true);
+                }
+            }
+        },
+        watch: {
+            bool() {
+                this.setBool();
             }
         },
         components: {
             LoginView,
             HomeCom
+        },
+        created() {
+            this.setBool();
         }
     }
 </script>

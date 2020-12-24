@@ -35,8 +35,8 @@
             return {
                 // 表单数据对象
                 user: {
-                    username: '',
-                    password: '',
+                    username: "",
+                    password: "",
                     remember: false,
                 },
                 // 验证
@@ -55,11 +55,50 @@
                 this.$refs[formName].validate((valid) => {
                     // 满足条件提交
                     if (valid) {
-                        console.log(valid)
-                        console.log(this.user)
+                        let forData = new FormData();
+                        Object.keys(this.user).forEach((key) => {
+                            forData.append(key, this.user[key]);
+                        });
+                        this.$axios.post('loginAuthentication.action', forData).then((result) => {
+                            // 登录验证成功 用户密码正确
+                            if (result.data !== '') {
+                                // 是否选中了记住我
+                                if (this.user.remember) {
+                                    // JSON.stringify() 将对象转为字符串
+                                    // JSON.parse() 将字符串转为对象
+                                    // 如果选中了 将用户数据储存到localStorage中
+                                    localStorage.setItem('empUser', JSON.stringify(result.data));
+                                    // 再将用户数据储存到sessionStorage中
+                                    sessionStorage.setItem('empUser', JSON.stringify(result.data));
+                                } else {
+                                    // 没选中 将用户数据储存到sessionStorage中
+                                    sessionStorage.setItem('empUser', JSON.stringify(result.data));
+                                    // 再将localStorage的用户数据删除
+                                    localStorage.removeItem('empUser');
+                                }
+
+                                // 登录成功显示后台页面
+                                this.$store.commit("setBool", true);
+                                this.$message({type: "success", message: "登录成功"});
+                            } else {
+                                // 登录验证失败
+                                // 提示错误消息
+                                this.$message.error("账号或密码错误");
+                            }
+                        });
                     }
                 });
+            },
+            setEmpUser() {
+                if (localStorage.getItem("empUser")) {
+                    this.user.username = JSON.parse(localStorage.getItem("empUser")).username;
+                    this.user.password = JSON.parse(localStorage.getItem("empUser")).password;
+                    this.user.remember = true;
+                }
             }
+        },
+        created() {
+            this.setEmpUser();
         }
     }
 </script>
@@ -72,7 +111,7 @@
         height: 100%;
         background-size: cover;
         background-position: 50%;
-        background-image: url("../assets/56.png");
+        background-image: url("../assets/59.png");
     }
 
     #loginForm {
@@ -92,12 +131,12 @@
     .login-banner {
         width: 300px;
         height: 100%;
-        background-image: url(../assets/51.png);
+        background-image: url(../assets/57.png);
         background-size: cover;
         background-position: 50%;
     }
 
-    #loginForm .login-form{
+    #loginForm .login-form {
         width: 400px;
         padding: 50px 35px 30px 0px;
         overflow: hidden;

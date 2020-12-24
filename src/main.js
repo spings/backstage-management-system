@@ -10,11 +10,24 @@ import axios from 'axios'
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$host = "http://localhost:8080/img/";
-axios.defaults.baseURL="http://localhost:8080/shop/"
+Vue.prototype.$indexOf = function (id) {
+    // 判断按钮权限是否存在
+    let a = 1;
+    this.$store.state.menuBtn.forEach((item) => {
+        if (item.id === id) {
+            a = 0
+        }
+    });
+    if (a === 0) {
+        return true;
+    }
+    return false;
+}
+axios.defaults.baseURL = "http://localhost:8080/shop/"
 Vue.use(ElementUI)
 
 
-var vue=new Vue({
+var vue = new Vue({
     router,
     store,
     render: h => h(App)

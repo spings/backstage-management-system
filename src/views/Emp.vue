@@ -1,6 +1,6 @@
 <template>
     <div id="empView">
-        <el-button @click="empAdd" type="primary" class="empAddBtn">
+        <el-button v-if="$indexOf(60)" @click="empAdd" type="primary" class="empAddBtn">
             Add
         </el-button>
         <el-table
@@ -53,7 +53,7 @@
                             {{r.name}}
                         </p>
 
-                        <el-button @click="empRoleEdit(scope.row)" type="warning" size="mini"
+                        <el-button v-if="$indexOf(61)" @click="empRoleEdit(scope.row)" type="warning" size="mini"
                                    style="margin-left: 52px">
                             修改
                         </el-button>
@@ -67,11 +67,13 @@
                 </template>
                 <template slot-scope="scope">
                     <el-button size="mini" type="warning"
-                               @click="empEdit(scope.row)">
+                               @click="empEdit(scope.row)"
+                               v-if="$indexOf(59)">
                         Edit
                     </el-button>
                     <el-button size="mini" type="danger"
-                               @click="empDelete(scope.row)">
+                               @click="empDelete(scope.row)"
+                               v-if="$indexOf(58)">
                         Delete
                     </el-button>
                 </template>
@@ -115,7 +117,8 @@
                 // 每页记录条数
                 pageSize: 5,
                 // 当前页数
-                currentPage: 1
+                currentPage: 1,
+                ass: false
             }
         },
         methods: {

@@ -74,19 +74,28 @@
             },
             isMenus1() {
                 return this.menus.filter((m) => {
+                    if (m.children === null) {
+                        m.children = [];
+                    }
                     return m.children.length < 1;
                 });
             }
         },
         created() {
+            let data = new URLSearchParams();
+            data.set("roles", JSON.stringify(JSON.parse(sessionStorage.getItem("empUser")).emp.roles));
             this.$axios({
                 method: 'post',
                 url: 'seMenu.action',
-                data: {}
+                data: data
             }).then((result) => {
                 this.menus = result.data;
                 this.$store.commit("setMenus", this.menus);
             });
+
+            this.$axios.post("seMenuBtn.action", data).then((result) => {
+                this.$store.commit("setMenuBtn", result.data);
+            })
         }
     }
 </script>

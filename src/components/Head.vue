@@ -96,11 +96,11 @@
                 trigger="click">
             <ul class="settingHead">
                 <li>个人设置</li>
-                <li id="headLogout">退出登录</li>
+                <li id="headLogout" @click="empUserLogout">退出登录</li>
             </ul>
             <div class="headImg" slot="reference">
-                <el-avatar :src="$host+'3.png'"></el-avatar>
-                <span class="spanHeader">用户名</span>
+                <el-avatar :src="$host+empImg"></el-avatar>
+                <span class="spanHeader">{{empName}}</span>
                 <i class="el-icon-caret-bottom"></i>
             </div>
         </el-popover>
@@ -127,10 +127,15 @@
                 refreshLeft: 1300,
                 screenBool: false,
                 refreshBool: true,
-                homeBool: true
+                homeBool: true,
+                // 员工头像
+                empImg: "",
+                // 员工名字
+                empName: ""
             }
         },
         methods: {
+            // 导航栏缩进
             oC() {
                 this.$store.commit("setOC");
                 setTimeout(() => {
@@ -141,6 +146,7 @@
                     }
                 }, 1)
             },
+            // 全屏
             screenFullToggle() {
                 // 点击时判断浏览器是否可全屏,不可全屏给提示,可全屏执行screenfull.toggle()
                 // 不知道为什么判断显示不可以全屏但是事实上可以全屏
@@ -154,12 +160,23 @@
                 }
                 Screenfull.toggle();
             },
+            // 刷新当前路由
             refresh(e) {
                 let url = e.path[1].baseURI.substr(e.path[1].baseURI.lastIndexOf('/'));
                 this.$router.push({path: '/hc'});
                 setTimeout(() => {
                     this.$router.push({path: url});
                 }, 1);
+            },
+            // 退出登录
+            empUserLogout() {
+                sessionStorage.removeItem("empUser");
+                this.$store.commit("setBool", false);
+            },
+            // 显示头像，用户名
+            showImgName() {
+                this.empImg = JSON.parse(localStorage.getItem("empUser")).emp.img
+                this.empName = JSON.parse(localStorage.getItem("empUser")).emp.name
             }
         },
         watch: {
@@ -232,6 +249,9 @@
                     this.screenLeft = 1300
                 }
             },
+        },
+        created() {
+            this.showImgName();
         }
     }
 </script>
@@ -289,6 +309,7 @@
         position: relative;
         top: -12px;
         margin-right: 7px;
+        margin-left: 10px;
     }
 
     .settingHead {

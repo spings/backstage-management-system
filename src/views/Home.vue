@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your 后台管理系统"/>
-  </div>
+    <div class="home">
+        <div class="homeBack"></div>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        name: 'Home'
+    }
 </script>
+
+<style scoped>
+    .homeBack {
+        width: 1283px;
+        height: 595px;
+        background-image: url("../assets/60.png");
+        opacity: 0.8;
+        position: absolute;
+        background-size: cover;
+        background-position: 10%;
+    }
+</style>
