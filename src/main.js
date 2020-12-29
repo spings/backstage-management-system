@@ -7,8 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './css/style.css'
 import axios from 'axios'
 
-//图片上传地址
-Vue.prototype.$upload = "http://localhost:8080/shop/ImageUpload.action";
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
