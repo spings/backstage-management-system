@@ -54,12 +54,6 @@
                 let list1 = this.$refs.menusTree.getCheckedKeys();
                 // 拿到半选中菜单的集合
                 let list2 = this.$refs.menusTree.getHalfCheckedKeys();
-                // 删除当前员工的权限
-                let data = new URLSearchParams();
-                data.set("rid", this.rid);
-                this.$axios.post("delRolePer.action", data).then((result) => {
-                    console.log("删除当前员工的权限: " + result.data);
-                })
                 // 添加选中权限
                 let data1 = new URLSearchParams();
                 data1.set("rid", this.rid);
