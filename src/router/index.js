@@ -17,6 +17,8 @@ import RevenueStatistics from '../views/RevenueStatistics'
 import ProcurementManagement from '../views/ProcurementManagement'
 import WarehouseGoods from "../views/WarehouseGoods";
 import Purchase from "../views/Purchase";
+/*import ShoplnfoAdd from "../components/Shop/ShoplnfoAdd";
+import ShoplnfoEdit from "../components/Shop/ShoplnfoEdit";*/
 
 Vue.use(VueRouter)
 
@@ -106,6 +108,16 @@ const routes = [
         name: 'Purchase',
         component: Purchase
     },
+/*    {
+        path: '/shoplnfoAdd',
+        name: 'ShoplnfoAdd',
+        component:ShoplnfoAdd
+    },
+    {
+        path: '/shoplnfoAdd',
+        name: 'ShoplnfoAdd',
+        component:ShoplnfoAdd
+    },*/
 ]
 
 const router = new VueRouter({
