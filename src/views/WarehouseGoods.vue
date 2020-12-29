@@ -27,14 +27,14 @@
                             size="mini"
                             placeholder="输入关键字搜索"/>
                 </template>
-                <template slot-scope="scope">
+               <!-- <template slot-scope="scope">
                     <el-button
                             type="primary" icon="el-icon-edit" circle
                             size="small"
                             @click="warehouseEdits(scope.$index, scope.row,'edit')">
                         进货
                     </el-button>
-                </template>
+                </template>-->
             </el-table-column>
         </el-table>
 
@@ -66,7 +66,7 @@
                 warehouseGoodsData:[],
                 page:'',
                 rows:'',
-                total:'',
+                total:0,
                 arr:[
                     {
                         id:'',

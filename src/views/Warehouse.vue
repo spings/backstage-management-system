@@ -110,7 +110,7 @@
                 dialogVisible: false,
                 dialogVisibleAdd: false,
                 warehouseEditData: {},
-                value: ''
+                value: "1"
             }
 
         },

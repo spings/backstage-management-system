@@ -113,12 +113,12 @@
             //pageSize（每页条数） 改变时触发
             handleSizeChange(val) {
                 this.rows = val;
-                this.getAllWarehouse();
+                this.getAllWarehouseType();
             },
             //改变页码时触发
             handleCurrentChange(val) {
                 this.page = val;
-                this.getAllWarehouse();
+                this.getAllWarehouseType();
             },
             //获取数据
             getAllWarehouseType() {
