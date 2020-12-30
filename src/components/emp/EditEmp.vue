@@ -151,7 +151,7 @@
     }
 
     #editEmpCom .el-dialog {
-        background-image: url(http://localhost:8090/images/24.png);
+        /*background-image: url(http://localhost:8090/images/24.png);*/
         background-size: 129%;
         padding: 10px;
     }
