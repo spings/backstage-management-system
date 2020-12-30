@@ -40,8 +40,9 @@
             <el-table-column width="300px" label="介绍" prop="introduce">
 
             </el-table-column>
-            <el-table-column width="100px" label="库存"
-                             prop="warehouseGoods.stock">
+            <el-table-column width="100px" label="库存" prop="warehouseGoods.stock">
+                <a v-if="tableData.warehouseGoods!=null">{{tableData.warehouseGoods.stock}}</a>
+                <a v-if="tableData.warehouseGoods==null">0</a>
             </el-table-column>
             <el-table-column
                     align="right">
@@ -75,7 +76,7 @@
         </div>
         <!--添加-->
         <el-dialog
-
+                class="dialog"
                 :visible.sync="dialogVisible"
                 title="商品添加"
                 width="60%"
@@ -92,6 +93,7 @@
         </el-dialog>
         <!--//添加图片-->
         <el-dialog
+                class="dialog"
                 :visible.sync="dialogVisibleB"
                 title="商品添加图片"
                 width="60%"
@@ -106,6 +108,7 @@
         </el-dialog>
         <!--修改-->
         <el-dialog
+                class="dialog"
                 :visible.sync="dialogVisibleA"
                 title="商品修改"
                 width="60%"
@@ -171,7 +174,7 @@
             },
             //逻辑删除
             handleDelete(index, row) {
-                this.$confirm('确认关闭？')
+                this.$confirm('确认删除？')
                     .then(() => {
                         var _this = this;
                         _this.$axios.post("delCommodityById.action?cid=" + row.cid).then(function (result) {
