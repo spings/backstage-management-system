@@ -37,7 +37,7 @@
         },
         watch: {
             // 监听
-            visibleEditRole(val) {
+            async visibleEditRole(val) {
                 // 判断当窗口关闭时 false
                 if (!val) {
                     // 我要干的事：在窗口关闭时对员工角色的增加或删除
@@ -58,6 +58,7 @@
                     let role = this.$parent.role;
                     // 改变后的 this.roleCloseWin
                     if (this.roleCloseWin.length > role.length) {
+                        console.log("+++")
                         // 将员工已有的角色排除
                         role.forEach((r) => {
                             this.roleCloseWin.forEach((rw, index) => {
@@ -97,6 +98,7 @@
                     }
                     // 反之则进行删除
                     if (this.roleCloseWin.length < role.length) {
+                        console.log("---")
                         // 将用户取消的角色id 搞出来
                         let cr = [];
                         // 循环员工当前的所有角色
@@ -144,6 +146,51 @@
                             });
                         }
                     }
+
+                    // if (this.roleCloseWin.length === role.length) {
+                    //     console.log("===")
+                    //     let Bool = true;
+                    //     await this.$parent.role.forEach((item) => {
+                    //         let data = new URLSearchParams();
+                    //         data.set("eid", this.eid);
+                    //         data.set("rid", item.id);
+                    //         this.$axios({
+                    //             method: 'post',
+                    //             url: 'delEmpRole.action',
+                    //             data: data
+                    //         }).then((result) => {
+                    //             if (!result.data) {
+                    //                 Bool = false;
+                    //             }
+                    //         });
+                    //     });
+                    //     this.roleCloseWin.forEach((item) => {
+                    //         let data = new URLSearchParams();
+                    //         data.set("eid", this.eid);
+                    //         data.set("rid", item.id);
+                    //         this.$axios({
+                    //             method: 'post',
+                    //             url: 'inEmpRole.action',
+                    //             data: data
+                    //         }).then((result) => {
+                    //             if (!result.data) {
+                    //                 Bool = false;
+                    //             }
+                    //         });
+                    //     });
+                    //     if (Bool) {
+                    //         this.$notify({
+                    //             message: '修改成功',
+                    //             type: 'success',
+                    //             duration: 2000
+                    //         });
+                    //     } else {
+                    //         this.$notify.error({
+                    //             message: '修改失败',
+                    //             duration: 2000
+                    //         });
+                    //     }
+                    // }
 
                     // 完事之后应将roleCloseWin清空，避免重复
                     this.roleCloseWin.splice(0);

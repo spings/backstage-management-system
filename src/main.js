@@ -40,3 +40,20 @@ var vue = new Vue({
 vue.$router.replace({
     path: '/',
 })
+
+/**
+ * 给JS的数组对象定义一个函数，用于查询指定条件的元素
+ * @param attribute
+ * @param conditions
+ * @returns {{size: number, row: []}} 数量, 数组对象
+ */
+Array.prototype.search = function (attribute, conditions) {
+    let result = {row: [], size: 0}
+    for (let i = 0; i < this.length; i++) {
+        if (this[i][attribute] === conditions) {
+            result.row.push(this[i]);
+            result.size++;
+        }
+    }
+    return result;
+};

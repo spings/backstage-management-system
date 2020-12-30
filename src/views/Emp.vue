@@ -211,7 +211,7 @@
                     // 循环当前员工的角色信息
                     roles.forEach((r1) => {
                         // 判断 如果当前员工有这个角色，就true
-                        if (r1.name === r.name) {
+                        if (r1.id === r.id) {
                             a = 0;
                         }
                     });
@@ -234,36 +234,52 @@
                     data: {}
                 }).then((result) => {
                     this.emp = result.data.rows;
+                    let roles1 = JSON.parse(sessionStorage.getItem("empUser")).emp.roles;
+                    if (roles1.search("id", 1).size < 1) {
+                        this.emp.forEach((item) => {
+                            item.roles.forEach((item1, index) => {
+                                let a = 1;
+                                roles1.forEach((item2) => {
+                                    if (item1.id === item2.id) {
+                                        a = 0;
+                                    }
+                                });
+                                if (a === 1) {
+                                    item.roles[index].name = "";
+                                }
+                            });
+                        });
+                    }
                     this.total = result.data.total;
                 });
             }
         },
         components: {AddEmpCom, EditEmpCom, EditEmpRoleCom},
         watch: {
-            empEmpRole(val) {
-                if (val.length > this.role.length) {
-                    this.role.forEach((r) => {
-                        val.forEach((v, index) => {
-                            if (v.name === r.role) {
-                                this.empEmpRole.splice(index, 1);
-                            }
-                        });
-                    });
-                    // 多的角色
-                    console.log(this.empEmpRole);
-                } else {
-                    val.forEach((v) => {
-                        this.role.forEach((r, index) => {
-                            if (v.name === r.role) {
-                                console.log(r.role)
-                                console.log(index)
-                            }
-                        });
-                    });
-                    // 少的角色
-                    console.log(this.role);
-                }
-            },
+            // empEmpRole(val) {
+            //     if (val.length > this.role.length) {
+            //         this.role.forEach((r) => {
+            //             val.forEach((v, index) => {
+            //                 if (v.name === r.role) {
+            //                     this.empEmpRole.splice(index, 1);
+            //                 }
+            //             });
+            //         });
+            //         // 多的角色
+            //         console.log(this.empEmpRole);
+            //     } else {
+            //         val.forEach((v) => {
+            //             this.role.forEach((r, index) => {
+            //                 if (v.name === r.role) {
+            //                     console.log(r.role)
+            //                     console.log(index)
+            //                 }
+            //             });
+            //         });
+            //         // 少的角色
+            //         console.log(this.role);
+            //     }
+            // },
             seInput(val) {
                 let data = new URLSearchParams();
                 data.set("conditions", val)
