@@ -226,6 +226,8 @@
                                     message: '删除成功',
                                     type: 'success'
                                 });
+                                _this.tableDatazho=[]
+                                _this.tableDataci=[]
                                 _this.getAllZhu()
                             })
                         })
@@ -240,6 +242,7 @@
                                     message: '删除成功',
                                     type: 'success'
                                 });
+                                _this.tableDataci=[]
                                 _this.getAllZhu()
                             })
                         })

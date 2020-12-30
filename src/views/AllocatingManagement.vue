@@ -169,7 +169,7 @@
                 params.append("storeids", ids);
                 this.$axios.post("fahuoGiveStore.action", params)
                     .then(function (result) {
-                        alert(result)
+                        console.log(result)
                         alert("发货成功")
                     }).catch(function (error) {
                     alert(error)

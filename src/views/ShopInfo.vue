@@ -40,10 +40,6 @@
             <el-table-column width="300px" label="介绍" prop="introduce">
 
             </el-table-column>
-            <el-table-column width="100px" label="库存" prop="warehouseGoods.stock">
-                <a v-if="tableData.warehouseGoods!=null">{{tableData.warehouseGoods.stock}}</a>
-                <a v-if="tableData.warehouseGoods==null">0</a>
-            </el-table-column>
             <el-table-column
                     align="right">
                 <template slot-scope="scope">
@@ -76,7 +72,6 @@
         </div>
         <!--添加-->
         <el-dialog
-                class="dialog"
                 :visible.sync="dialogVisible"
                 title="商品添加"
                 width="60%"
@@ -93,7 +88,6 @@
         </el-dialog>
         <!--//添加图片-->
         <el-dialog
-                class="dialog"
                 :visible.sync="dialogVisibleB"
                 title="商品添加图片"
                 width="60%"
@@ -108,7 +102,6 @@
         </el-dialog>
         <!--修改-->
         <el-dialog
-                class="dialog"
                 :visible.sync="dialogVisibleA"
                 title="商品修改"
                 width="60%"
@@ -286,7 +279,7 @@
         background-image: url(http://localhost:8080/shop/img/30.png);
         background-size: 120%;
         padding: 10px;
-        height: 500px;
+        height: 700px;
     }
 
     .avatar-uploader .el-upload {

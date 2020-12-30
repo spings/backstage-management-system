@@ -48,7 +48,7 @@
     }
 
     ::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, .4);
+        background-color: pink;
         background-clip: padding-box;
         border: 3px solid transparent;
         border-radius: 7px;

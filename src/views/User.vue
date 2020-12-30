@@ -20,9 +20,9 @@
             <el-table-column width="200px" label="号码" prop="phone">
 
             </el-table-column>
-            <el-table-column width="285px" label="密码" prop="password">
+<!--            <el-table-column width="285px" label="密码" prop="password">
 
-            </el-table-column>
+            </el-table-column>-->
             <el-table-column width="100px" label="图片" prop="photo">
                 <template slot-scope="scope">
                     <el-image
