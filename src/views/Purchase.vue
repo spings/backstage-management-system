@@ -48,6 +48,7 @@
                     align="right">
                 <template slot-scope="scope">
                     <el-button
+                            v-if="$indexOf(45)"
                             type="primary" icon="el-icon-edit" circle
                             size="small"
                             @click="openAddWarehouse(scope.$index, scope.row,'edit')">
@@ -74,7 +75,7 @@
         <el-dialog
                 class="dialog"
                 destroy-on-close
-                title="仓库商品添加窗体"
+                title="商品采购"
                 :visible.sync="dialogVisibleAdd"
                 :before-close="handleClose">
             <span>
@@ -159,6 +160,7 @@
                 this.purchaseAddData = row;
                 if (this.$refs.dialogAdd != undefined) {
                     this.$refs.dialogAdd.addPurchaseData = row;
+                    this.$refs.dialogAdd.number = 100;
                 }
 
             },

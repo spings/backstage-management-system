@@ -11,7 +11,7 @@
                 <el-input type="text" v-model="warehouseEditData.name" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="请输入容量" prop="capacity">
-                <el-input-number v-model="warehouseEditData.capacity" :min="1000" :max="2000"
+                <el-input-number v-model="warehouseEditData.capacity" :min="1000" :max="20000"
                                  autocomplete="off"></el-input-number>
             </el-form-item>
             <el-form-item label="请选择类型">

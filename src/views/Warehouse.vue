@@ -1,7 +1,7 @@
 <template>
     <!--    仓库信息-->
     <div id="warehouseView">
-        <el-button type="success" icon="el-icon-check" circle @click="warehouseEdits(null,null,'add')">添加</el-button>
+        <el-button type="success" v-if="$indexOf(39)" icon="el-icon-check" circle @click="warehouseEdits(null,null,'add')">添加</el-button>
         <el-table
                 border
                 :data="tableData"
@@ -30,11 +30,13 @@
                 </template>
                 <template slot-scope="scope">
                     <el-button
+                            v-if="$indexOf(37)"
                             type="primary" icon="el-icon-edit" circle
                             size="small"
                             @click="warehouseEdits(scope.$index, scope.row,'edit')">
                     </el-button>
                     <el-button
+                            v-if="$indexOf(38)"
                             type="danger" icon="el-icon-delete" circle
                             size="small"
                             @click="handleDelete(scope.$index, scope.row)">
@@ -110,7 +112,7 @@
                 dialogVisible: false,
                 dialogVisibleAdd: false,
                 warehouseEditData: {},
-                value: ''
+                value: "1"
             }
 
         },
