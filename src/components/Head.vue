@@ -162,6 +162,7 @@
             },
             // 刷新当前路由
             refresh(e) {
+                console.log(e);
                 let url = e.path[1].baseURI.substr(e.path[1].baseURI.lastIndexOf('/'));
                 this.$router.push({path: '/hc'});
                 setTimeout(() => {

@@ -16,7 +16,7 @@
                           autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="购买数量" prop="stock">
-                <el-input-number v-model="addPurchaseData.stock" :min="1000" :max="20000"
+                <el-input-number v-model="addPurchaseData.stock" :min="100" :max="20000"
                                  autocomplete="off"></el-input-number>
             </el-form-item>
 
@@ -45,6 +45,7 @@
         name: "PurchaseAdd",
         data() {
             return {
+                number:0,
                 addPurchaseData: {
                     cid: 0,
                     wid: '',
@@ -89,7 +90,7 @@
                             }
                             _this.$parent.$parent.dialogVisibleAdd = false;
                         }).catch(function (error) {
-                            alert(error)
+                                alert(error)
                         })
                     } else {
                         console.log('error submit!!');
@@ -119,6 +120,7 @@
         created() {
             var _this = this;
             this.addPurchaseData = this.$parent.$parent.purchaseAddData;
+            this.addPurchaseData.stock = this.number;
             this.$axios.get("queryAllWarehouse.action?rows=1000000").then(function (result) {
                 _this.warehouseData = result.data.rows;
             }).catch(function (error) {
